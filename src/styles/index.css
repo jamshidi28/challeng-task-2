@@ -74,13 +74,14 @@ html {
 .box__title{
   margin-bottom: 13rem;
     position: relative;
-    left: 20rem;
+    left: 11rem;
     
 
 }
 
 .box__title h1{
   color: var(--color-secondary-600);
+  font-size: 3rem;
 }
 
 .box__btn a{
@@ -164,4 +165,56 @@ html {
   background-color: var(--color-secondary-100);
   color: var(--color-secondary-500);
 }
-    
+
+    /*ریسپانسیو کردن جدول  */
+@media only screen and (max-width: 768px) {
+  
+  #table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding-right: 9px;
+  }
+
+  #table td, #table th {
+    padding: 10px 15px;
+    font-size: 1.4rem;
+  }
+
+  #table th, #table td {
+    white-space: nowrap; 
+  }
+
+  .container__box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .container__input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  .sortable-icon {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .box__title h1 {
+    font-size: 2.5rem;
+  }
+
+  #table td, #table th {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .box__btn a {
+    padding: 10px 40px;
+    font-size: 1.8rem;
+  }
+}    
