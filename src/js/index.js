@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let isPriceAsc = true;
     let isDateAsc = true;
     let transactions = [];
+    let filteredTransactions = [];
 
     function dataTime(timestamp) {
         const date = new Date(timestamp);
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         axios.get('http://localhost:3000/transactions')
             .then(response => {
                 transactions = response.data;
+                 filteredTransactions = [...transactions];
                 displayTransactions(transactions);
                 document.getElementById('transaction-table').style.display = 'block'; // نمایش جدول پس از بارگذاری
             })
@@ -42,8 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterTransactions(query = "") {
-        const filtered = transactions.filter(item => item.refId.toString().startsWith(query));
-        displayTransactions(filtered);
+        if (query === "") {
+            // اگر جستجو خالی باشد
+            filteredTransactions = transactions;
+        } else {
+        const filteredTransactions = transactions.filter(item => item.refId.toString().startsWith(query));
+        }
+            displayTransactions(filteredTransactions);
     }
 
     // نشان دادن دیتاها در هنگام کلیک
@@ -63,16 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // مرتب‌سازی بر اساس قیمت
     const sortPrice = document.getElementById('sort-icon-price')
     sortPrice.addEventListener('click', () => {
-        const sorted = [...transactions].sort((a, b) => isPriceAsc ? a.price - b.price : b.price - a.price);
-        displayTransactions(sorted);
+        filteredTransactions.sort((a, b) => isPriceAsc ? a.price - b.price : b.price - a.price);
+        displayTransactions(filteredTransactions);
         isPriceAsc = !isPriceAsc;
     });
 
     // مرتب‌سازی بر اساس تاریخ
     const sortDate =document.getElementById('sort-icon-date')
     sortDate.addEventListener('click', () => {
-        const sorted = [...transactions].sort((a, b) => isDateAsc ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date));
-        displayTransactions(sorted);
+        filteredTransactions.sort((a, b) => isDateAsc ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date));
+        displayTransactions(filteredTransactions);
         isDateAsc = !isDateAsc;
     });
 });
