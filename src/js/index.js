@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // اگر جستجو خالی باشد
             filteredTransactions = transactions;
         } else {
-        const filteredTransactions = transactions.filter(item => item.refId.toString().startsWith(query));
+         filteredTransactions = transactions.filter(item => item.refId.toString().startsWith(query));
         }
             displayTransactions(filteredTransactions);
     }
