@@ -70,16 +70,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // مرتب‌سازی بر اساس قیمت
     const sortPrice = document.getElementById('sort-icon-price')
     sortPrice.addEventListener('click', () => {
+         isPriceAsc = !isPriceAsc;
+        sortPrice.classList.toggle("rotate");
         filteredTransactions.sort((a, b) => isPriceAsc ? a.price - b.price : b.price - a.price);
         displayTransactions(filteredTransactions);
-        isPriceAsc = !isPriceAsc;
+       
     });
 
     // مرتب‌سازی بر اساس تاریخ
     const sortDate =document.getElementById('sort-icon-date')
     sortDate.addEventListener('click', () => {
+          isDateAsc = !isDateAsc;
+         sortDate.classList.toggle("rotate");
         filteredTransactions.sort((a, b) => isDateAsc ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date));
         displayTransactions(filteredTransactions);
-        isDateAsc = !isDateAsc;
+      
     });
 });
